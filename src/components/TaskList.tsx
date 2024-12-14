@@ -23,7 +23,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
     setOpen(true);
   };
 
-  const handleClose = (event: Event | React.SyntheticEvent<any, Event>, reason: SnackbarCloseReason) => {
+  const handleClose = (event: React.SyntheticEvent<any, Event>, reason: SnackbarCloseReason) => {
     if (reason === 'clickaway') {
       return;
     }
