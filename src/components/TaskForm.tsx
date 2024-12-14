@@ -27,7 +27,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, initialData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="custom-form">
       <div>
         <Tooltip title="Enter the task title">
           <TextField
@@ -65,7 +65,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, initialData }) => {
           />
         </Tooltip>
       </div>
-      <Button type="submit" variant="contained" color="primary">
+      <Button type="submit" variant="contained" color="primary" className="custom-button">
         Submit
       </Button>
     </form>

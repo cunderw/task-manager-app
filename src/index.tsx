@@ -32,8 +32,8 @@ const App: React.FC = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <div className="container">
-        <h1>Task Management App</h1>
+      <div className="custom-container">
+        <h1 className="custom-header">Task Management App</h1>
         <TaskForm onSubmit={addTask} />
         <TaskList tasks={tasks} setTasks={setTasks} />
         <TaskProgress tasks={tasks} />

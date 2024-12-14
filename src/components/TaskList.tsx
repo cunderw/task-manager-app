@@ -49,14 +49,15 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
   };
 
   return (
-    <div>
-      <Typography variant="h4" gutterBottom>
+    <div className="custom-container">
+      <Typography variant="h4" gutterBottom className="custom-header">
         Task List
       </Typography>
-      <List>
+      <List className="custom-list">
         {tasks.map((task) => (
           <ListItem
             key={task.id}
+            className="custom-list-item"
             style={{
               backgroundColor: task.completed ? "#e0f7fa" : "#fff",
               marginBottom: "10px",
@@ -82,6 +83,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
               variant="contained"
               color={task.completed ? "secondary" : "primary"}
               onClick={() => handleComplete(task.id)}
+              className="custom-button"
             >
               {task.completed ? "Mark as Incomplete" : "Mark as Complete"}
             </Button>
