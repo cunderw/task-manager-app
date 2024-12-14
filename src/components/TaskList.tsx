@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TaskDetails } from '../models/TaskInterfaces';
+import DOMPurify from 'dompurify';
 
 interface TaskListProps {
   tasks: TaskDetails[];
@@ -18,7 +19,7 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
         {tasks.map(task => (
           <li key={task.id}>
             <h3>{task.title}</h3>
-            <p>{task.description}</p>
+            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(task.description) }}></p>
             <p>Deadline: {task.deadline}</p>
             <button onClick={() => handleComplete(task.id)}>
               {task.completed ? 'Mark as Incomplete' : 'Mark as Complete'}
