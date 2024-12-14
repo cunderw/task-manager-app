@@ -42,7 +42,7 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, initialData }) => {
       <div>
         <label htmlFor="description">
           <Tooltip title="Enter the task description">
-            Description
+            <span>Description</span>
           </Tooltip>
         </label>
         <ReactQuill

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TaskDetails } from '../models/TaskInterfaces';
 import DOMPurify from 'dompurify';
-import { List, ListItem, ListItemText, Button, Typography, Snackbar } from '@mui/material';
+import { List, ListItem, ListItemText, Button, Typography, Snackbar, SnackbarCloseReason } from '@mui/material';
 import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface TaskListProps {
