@@ -1,3 +1,5 @@
+# THIS WAS MADE WITH COPILOT WORKSPACE - THATS WHY THE CODE SMELLS BAD
+
 # Task Management App
 
 This project is a task management application to help users organize their tasks. It includes features like task creation, editing, and deletion, the ability to set deadlines and reminders for tasks, and a progress tracking feature to monitor task completion.
