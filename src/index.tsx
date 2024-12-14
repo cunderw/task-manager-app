@@ -4,13 +4,18 @@ import TaskList from './components/TaskList';
 import TaskForm from './components/TaskForm';
 import TaskProgress from './components/TaskProgress';
 import './styles.css';
-import { TaskDetails } from './models/TaskInterfaces';
+import { TaskDetails, TaskFormData } from './models/TaskInterfaces';
 
 const App: React.FC = () => {
   const [tasks, setTasks] = React.useState<TaskDetails[]>([]);
 
-  const addTask = (task: TaskDetails) => {
-    setTasks([...tasks, { ...task, id: tasks.length + 1, completed: false }]);
+  const addTask = (task: TaskFormData) => {
+    const newTask: TaskDetails = {
+      ...task,
+      id: tasks.length + 1,
+      completed: false
+    };
+    setTasks([...tasks, newTask]);
   };
 
   return (
