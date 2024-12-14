@@ -40,13 +40,15 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, initialData }) => {
         </Tooltip>
       </div>
       <div>
-        <Tooltip title="Enter the task description">
-          <label htmlFor="description">Description</label>
-          <ReactQuill
-            value={description}
-            onChange={(content) => setDescription(content)}
-          />
-        </Tooltip>
+        <label htmlFor="description">
+          <Tooltip title="Enter the task description">
+            Description
+          </Tooltip>
+        </label>
+        <ReactQuill
+          value={description}
+          onChange={(content) => setDescription(content)}
+        />
       </div>
       <div>
         <Tooltip title="Select the task deadline">
