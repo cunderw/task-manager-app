@@ -24,6 +24,10 @@ To set up and run the project, follow these steps:
 
 4. Open your browser and navigate to `http://localhost:3000` to see the application running.
 
+## Editor
+
+This project uses Quill as the rich text editor for task descriptions. Quill is a modern WYSIWYG editor built for compatibility and extensibility.
+
 ## Contributing
 
 We welcome contributions to the project! To contribute, follow these steps:
