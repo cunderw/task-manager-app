@@ -1,5 +1,6 @@
 import React from 'react';
 import { TaskDetails } from '../models/TaskInterfaces';
+import { Typography, LinearProgress, Box } from '@mui/material';
 
 interface TaskProgressProps {
   tasks: TaskDetails[];
@@ -11,20 +12,26 @@ const TaskProgress: React.FC<TaskProgressProps> = ({ tasks }) => {
   const progressPercentage = totalTasks === 0 ? 0 : (completedTasks / totalTasks) * 100;
 
   return (
-    <div>
-      <h2>Task Progress</h2>
-      <p>{completedTasks} of {totalTasks} tasks completed</p>
-      <div style={{ width: '100%', backgroundColor: '#e0e0e0', borderRadius: '5px' }}>
-        <div
-          style={{
-            width: `${progressPercentage}%`,
+    <Box>
+      <Typography variant="h4" gutterBottom>
+        Task Progress
+      </Typography>
+      <Typography variant="body1">
+        {completedTasks} of {totalTasks} tasks completed
+      </Typography>
+      <LinearProgress
+        variant="determinate"
+        value={progressPercentage}
+        sx={{
+          height: 10,
+          borderRadius: 5,
+          backgroundColor: '#e0e0e0',
+          '& .MuiLinearProgress-bar': {
             backgroundColor: progressPercentage === 100 ? '#4caf50' : '#2196f3',
-            height: '10px',
-            borderRadius: '5px',
-          }}
-        />
-      </div>
-    </div>
+          },
+        }}
+      />
+    </Box>
   );
 };
 

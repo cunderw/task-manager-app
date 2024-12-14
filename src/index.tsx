@@ -5,6 +5,18 @@ import TaskForm from './components/TaskForm';
 import TaskProgress from './components/TaskProgress';
 import './styles.css';
 import { TaskDetails, TaskFormData } from './models/TaskInterfaces';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1976d2',
+    },
+    secondary: {
+      main: '#dc004e',
+    },
+  },
+});
 
 const App: React.FC = () => {
   const [tasks, setTasks] = React.useState<TaskDetails[]>([]);
@@ -19,12 +31,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <h1>Task Management App</h1>
-      <TaskForm onSubmit={addTask} />
-      <TaskList tasks={tasks} setTasks={setTasks} />
-      <TaskProgress tasks={tasks} />
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="container">
+        <h1>Task Management App</h1>
+        <TaskForm onSubmit={addTask} />
+        <TaskList tasks={tasks} setTasks={setTasks} />
+        <TaskProgress tasks={tasks} />
+      </div>
+    </ThemeProvider>
   );
 };
 

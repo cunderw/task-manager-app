@@ -1,32 +1,63 @@
 import React, { useState } from 'react';
 import { TaskDetails } from '../models/TaskInterfaces';
 import DOMPurify from 'dompurify';
+import { List, ListItem, ListItemText, Button, Typography, Snackbar } from '@mui/material';
+import MuiAlert, { AlertProps } from '@mui/material/Alert';
 
 interface TaskListProps {
   tasks: TaskDetails[];
   setTasks: React.Dispatch<React.SetStateAction<TaskDetails[]>>;
 }
 
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 const TaskList: React.FC<TaskListProps> = ({ tasks, setTasks }) => {
+  const [open, setOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+
   const handleComplete = (id: number) => {
     setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+    setSnackbarMessage('Task status updated');
+    setOpen(true);
+  };
+
+  const handleClose = (event?: React.SyntheticEvent, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
   };
 
   return (
     <div>
-      <h2>Task List</h2>
-      <ul>
+      <Typography variant="h4" gutterBottom>
+        Task List
+      </Typography>
+      <List>
         {tasks.map(task => (
-          <li key={task.id}>
-            <h3>{task.title}</h3>
-            <p dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(task.description) }}></p>
-            <p>Deadline: {task.deadline}</p>
-            <button onClick={() => handleComplete(task.id)}>
+          <ListItem key={task.id} style={{ backgroundColor: task.completed ? '#e0f7fa' : '#fff', marginBottom: '10px', borderRadius: '5px' }}>
+            <ListItemText
+              primary={task.title}
+              secondary={
+                <>
+                  <span dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(task.description) }}></span>
+                  <Typography variant="body2">Deadline: {task.deadline}</Typography>
+                </>
+              }
+            />
+            <Button variant="contained" color={task.completed ? 'secondary' : 'primary'} onClick={() => handleComplete(task.id)}>
               {task.completed ? 'Mark as Incomplete' : 'Mark as Complete'}
-            </button>
-          </li>
+            </Button>
+          </ListItem>
         ))}
-      </ul>
+      </List>
+      <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+        <Alert onClose={handleClose} severity="success">
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </div>
   );
 };

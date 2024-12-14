@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TaskFormData } from '../models/TaskInterfaces';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { TextField, Button, Tooltip } from '@mui/material';
 
 interface TaskFormProps {
   onSubmit: (task: TaskFormData) => void;
@@ -28,31 +29,43 @@ const TaskForm: React.FC<TaskFormProps> = ({ onSubmit, initialData }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label htmlFor="title">Title</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
+        <Tooltip title="Enter the task title">
+          <TextField
+            label="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            fullWidth
+            margin="normal"
+          />
+        </Tooltip>
       </div>
       <div>
-        <label htmlFor="description">Description</label>
-        <ReactQuill
-          value={description}
-          onChange={(content) => setDescription(content)}
-        />
+        <Tooltip title="Enter the task description">
+          <label htmlFor="description">Description</label>
+          <ReactQuill
+            value={description}
+            onChange={(content) => setDescription(content)}
+          />
+        </Tooltip>
       </div>
       <div>
-        <label htmlFor="deadline">Deadline</label>
-        <input
-          type="date"
-          id="deadline"
-          value={deadline}
-          onChange={(e) => setDeadline(e.target.value)}
-        />
+        <Tooltip title="Select the task deadline">
+          <TextField
+            label="Deadline"
+            type="date"
+            value={deadline}
+            onChange={(e) => setDeadline(e.target.value)}
+            fullWidth
+            margin="normal"
+            InputLabelProps={{
+              shrink: true,
+            }}
+          />
+        </Tooltip>
       </div>
-      <button type="submit">Submit</button>
+      <Button type="submit" variant="contained" color="primary">
+        Submit
+      </Button>
     </form>
   );
 };
