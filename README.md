@@ -26,6 +26,32 @@ To set up and run the project, follow these steps:
 
 4. Open your browser and navigate to `http://localhost:3000` to see the application running.
 
+## Backend Setup
+
+To set up and run the backend server, follow these steps:
+
+1. Install the necessary dependencies:
+   ```sh
+   npm install express prisma sqlite3
+   ```
+
+2. Initialize Prisma:
+   ```sh
+   npx prisma init
+   ```
+
+3. Update the `prisma/schema.prisma` file to define your data model.
+
+4. Run the Prisma migrations to set up the SQLite database:
+   ```sh
+   npx prisma migrate dev --name init
+   ```
+
+5. Start the backend server:
+   ```sh
+   npm run start:server
+   ```
+
 ## Editor
 
 This project uses Quill as the rich text editor for task descriptions. Quill is a modern WYSIWYG editor built for compatibility and extensibility.
